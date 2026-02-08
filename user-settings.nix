@@ -1,37 +1,30 @@
 { config, pkgs, ... }:
 
 {
-  time.timeZone = "Europe/Zurich";
+  time.timeZone = "America/New_York";
 
   i18n.supportedLocales = [
-    "en_DK.UTF-8/UTF-8"
-    "de_DE.UTF-8/UTF-8"
-    "de_CH.UTF-8/UTF-8"
     "en_US.UTF-8/UTF-8"
   ];
   i18n.defaultLocale = "en_US.UTF-8";
 
-  users.users.michael = {
+  users.users.tesco = {
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFGSGdjns3/K3vwrQvwtvEMruFIqDtV//CHWVLUm4XNt michael@midna"
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHlXLvR47KGYvY27G0+QKqGl4100VcGNclmhrnloZP6/ michael@m1a.lan"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDwnQlNQg+zqDQuF63syy4NkuEOIxFrGDj1pXGb35Kqg thomas.price@tescometering.com"
     ];
 
     isNormalUser = true;
-    description = "Michael Stapelberg";
+    description = "Tesco Metering";
     extraGroups = [ "wheel" ];
-    shell = pkgs.zsh;
+    shell = pkgs.bash;
     packages = with pkgs; [ ];
   };
 
   environment.systemPackages = with pkgs; [
-    git # for checking out github.com/stapelberg/configfiles
+    git
     rsync
-    zsh
+    bash
     vim
-    (import ./emacs-config.nix {
-      inherit pkgs;
-    })
     wget
     curl
     rxvt-unicode # for terminfo
@@ -40,15 +33,17 @@
     ncdu # often useful to get a sense of data
     lsof
     psmisc # for killall
+    gnupg
+    pass
   ];
 
-  programs.zsh.enable = true;
+  programs.bash.enable = true;
   services.openssh.enable = true;
 
-  # Adding michael as trusted user means
+  # Adding 'tesco' as trusted user means
   # we can upgrade the system via SSH (see Makefile).
   nix.settings.trusted-users = [
-    "michael"
+    "tesco"
     "root"
   ];
 
