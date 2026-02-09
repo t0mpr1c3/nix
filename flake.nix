@@ -19,6 +19,5 @@
         "x86_64-darwin"
         "aarch64-darwin"
       ] (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
-      system.stateVersion = "25.11";
     };
 }
