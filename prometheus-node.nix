@@ -12,7 +12,7 @@ in
     # export the mtime of /nix/store
     enabledCollectors = [ "textfile" ];
     extraFlags = [
-      "--collector.textfile.directory=/run/prometheus-node-exporter/textfile/"
+      "--collector.textfile.directory=/run/prometheus-node-exporter"; #/textfile/"
     ];
   };
 
