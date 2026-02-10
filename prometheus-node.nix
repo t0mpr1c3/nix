@@ -6,7 +6,7 @@ in
 {
   services.prometheus.exporters.node = {
     enable = true;
-    listenAddress = "${config.networking.hostName}.monkey-turtle.ts.net";
+    listenAddress = "0.0.0.0:9090";
 
     # Export metrics from text files as well so that we can
     # export the mtime of /nix/store
