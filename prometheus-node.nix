@@ -7,7 +7,7 @@ in
   services.prometheus.exporters.node = {
     enable = true;
     listenAddress = "0.0.0.0";
-    port = "9090";
+    port = 9090;
 
     # Export metrics from text files as well so that we can
     # export the mtime of /nix/store
